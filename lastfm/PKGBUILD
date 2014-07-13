@@ -15,7 +15,10 @@ source=(Last.fm-$pkgver.tar.bz2::http://www.last.fm/download/linux
     LAV_Source_fix.patch
     lastfm-scrobbler.desktop
     cast-bug.patch)
-
+conflicts=(lastfm-git
+    lastfm-mpd-cli
+    lastfm-msk
+    lastfm-msk-light
 
 #install=$pkgname.install
 
@@ -33,8 +36,7 @@ package() {
   cd "$srcdir/lastfm-desktop-$pkgver"
   mkdir -p $pkgdir/usr/bin
   mkdir -p $pkgdir/opt/last.fm/css
-  mkdir -p $pkgdir/usr/share/applications
-  mkdir -p $pkgdir/usr/share/pixmaps
+  mkdir -p $pkgdir/usr/share/{applications,pixmaps}
   cp -R _bin $pkgdir/opt/last.fm/bin
   cp "app/client/Last.fm Scrobbler.css" $pkgdir/opt/last.fm/css
   install -m755 $srcdir/lastfm-scrobbler $pkgdir/usr/bin/lastfm-scrobbler
